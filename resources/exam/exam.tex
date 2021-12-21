@@ -1,0 +1,411 @@
+\documentclass{exam}
+%MC questions taken from https://runestone.academy/runestone/books/published/apcsareview/ArrayBasics/arrayExam.html
+
+\usepackage{enumerate} %for alphabetized lists
+\usepackage{listings} %for programming snippets
+\usepackage{color} %for keyword colors in programming snippets
+\usepackage{multicol} %for multiple columns
+%the following is for java listings
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tblr,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%end java listings stuff
+\title{AP CS A Unit Test: Arrays}
+
+\author{Herbert H. Lehman High School}
+\begin{document}
+\maketitle
+\makebox[0.75\textwidth]{Name and Date:\enspace\hrulefill}
+\vspace{1mm}
+
+
+\section*{Multiple choice (30 pts)}
+
+
+\vspace{1mm}
+
+\begin{questions}
+\question 
+%question 1
+What is the value of \texttt{i} after the  code below has executed?
+
+\begin{lstlisting}
+int[] x = {2, 1, 4, 5, 7};
+int limit = 3;
+int i = 0;
+int sum = 0;
+while ((sum < limit) && (i < x.length))
+{
+   i++;
+   sum = sum + x[i];
+}
+\end{lstlisting}
+
+\begin{choices}
+\choice  0
+
+\choice 1
+
+\choice 2 
+\choice 3
+\end{choices}
+
+\question
+%question 2
+What is the value of \texttt{count} after the following code has executed?
+
+\begin{lstlisting}
+
+int [] x = {1, 2, 3, 3, 3};
+boolean b[] = new boolean[x.length];
+for (int i = 0; i < b.length; i++)
+   b[i] = false;
+for (int i = 0; i < x.length; i++)
+   b[ x[i] ] = true;
+int count = 0;
+for (int i = 0; i < b.length; i++)
+{
+   if (b[i] == true) count++;
+}
+\end{lstlisting}
+
+\begin{choices}
+\choice 1
+\choice 2
+\choice 3
+\choice 4
+\choice 5
+\end{choices}
+
+\question 
+After the following code executes what are the values in \texttt{array2}?
+
+\begin{lstlisting}
+int[] array1 = {2, 4, 1, 3};
+int[] array2 = {0, 0, 0, 0};
+int a2 = 0;
+for (int a1=1; a1 < array1.length; a1++)
+{
+   if (array1[a1] >= 2)
+   {
+      array2[a2] = array1[a1];
+      a2++;
+   }
+}
+\end{lstlisting}
+
+\begin{choices}
+
+\choice \{4, 3, 0, 0\}
+\choice \{4, 1, 3, 0\}
+\choice \{2, 4, 3, 0\}
+\choice \{2, 4, 1, 3\}
+
+\end{choices}
+
+
+
+\question
+%question 3
+ If any two numbers in an array of integers, not necessarily consecutive numbers in the array, are out of order (i.e. the number that occurs first in the array is larger than the number that occurs second), then that is called an inversion. For example, consider an array “x” that has the values \{1, 4, 3, 2\}. Then there are three inversions since 4 is greater than both 3 and 2 and 3 is greater than 2. Which of the following can be used to replace the missing code so that the code correctly counts the number of inversions?
+
+\begin{lstlisting}
+int inversionCount = 0;
+for (int i=0 ; i < x.length - 1 ; i++)
+{
+   // missing code goes here
+   {
+      if (x[i] > x[j])
+         inversionCount++;
+   }
+}
+
+\end{lstlisting}
+
+
+\begin{choices}
+\choice  \texttt{for (int j=0 ; j < x.length; j++)}
+\choice  \texttt{for(int j=0 ; j < x.length - 1; j++)}
+\choice  \texttt{for(int j=i+1; j < x.length; j++)}
+\choice  \texttt{for (int j=i+1; j < x.length - 1; j++)}
+\end{choices}
+
+\newpage
+\question
+%question 4
+
+ Which of the following correctly copies all the even numbers from \texttt{array1} to \texttt{array2} at the same position as they are in \texttt{array1}without any errors? Assume that \texttt{array2} is large enough for all the copied values.
+\begin{multicols}{2}
+\begin{lstlisting}
+
+A.
+int a2 = 0;
+for (int a1=0 ; a1 < array1.length ; a1++)
+{
+   // if array1[a1] is even
+   if (array1[a1] % 2 == 0)
+   {
+      // array1[a1] is even,
+      // so copy it
+      a2++;
+      array2[a2] = array1[a1];
+   }
+}
+B.
+int a2 = 0;
+for (int a1=0 ; a1 < array1.length ; a1++)
+{
+   // if array1[a1] is even
+   if (array1[a1] % 2 == 0)
+   {
+      // array1[a1] is even,
+      // so copy it
+      array2[a2] = array1[a1];
+      a2++;
+   }
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+
+C.
+int a2 = 0;
+for ( int a1=0 ; a1 <= array1.length ; a1++)
+{
+   // if array1[a1] is even
+   if (array1[a1] % 2 == 0)
+   {
+      // array1[a1] is even,
+      // so copy it
+      array2[a2] = array1[a1];
+      a2++;
+   }
+}
+D.
+int a2 = 0;
+for (int a1=0 ; a1 <= array1.length ; a1++)
+{
+   // if array1[a1] is even
+   if (array1[a1] % 2 == 0)
+   {
+      // array1[a1] is even,
+      // so copy it
+      a2++;
+      array2[a2] = array1[a1];
+   }
+}
+
+\end{lstlisting}
+\end{multicols}
+\begin{choices}
+\choice  A
+\choice B
+\choice C
+\choice  D
+\end{choices}
+
+\question
+The greatest superhero movie of all time is...
+
+\begin{choices}
+
+\choice \textit{The Incredibles} (2004)
+\choice \textit{Black Panther} (2018)
+\choice \textit{Spiderman: No Way Home} (2021)
+\choice None of the above.
+\end{choices}
+
+
+\end{questions}
+
+
+
+\newpage
+
+\section*{Short Answer (30 pts)}
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+Answer the questions in the spaces provided. If you run out of room
+for an answer, continue on the back of the page.}}}
+\end{center}
+\begin{questions}
+\question
+
+\begin{enumerate}[a.]
+\item What are some limitations of Java arrays, compared to Python lists?
+ \fillwithlines{4cm}
+\item How does the \texttt{SuperArray} class extend the capacity of standard Java arrays?
+ \fillwithlines{4cm}
+\end{enumerate}
+
+
+\question
+
+Use a for loop to write out the missing code necessary to reproduce the list below:
+
+
+\begin{lstlisting}
+1. Saad 
+2. Yosuf
+3. Sam 
+4. Rafiki
+5. Luis
+6. Maddox
+\end{lstlisting}
+
+
+
+\begin{lstlisting}
+public static void main(String[] args) {
+String[] roster = {Saad, Yosuf, Sam, Rafiki, Luis, Maddox}
+
+//put for loop here 
+
+
+
+
+
+
+
+
+
+
+
+
+}
+\end{lstlisting}
+
+\question
+
+Finish the program below so that \texttt{count\_even() }will return the sum of every other item in an array, beginning with the first item. If the method is correctly implemented, the program below should print  the value \texttt{21}:
+
+\begin{lstlisting}
+public static void main(String[] args){
+	int[] arr1 = {3 ,5 ,7, 9, 11};
+	int count = count_even(arr1);
+	System.out.print("count = " + count);
+}
+public static int count_even(int[] arr){
+	//complete this code
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+\end{lstlisting}
+
+
+
+
+
+
+
+\end{questions}
+
+\newpage
+
+\section*{Free response (30 pts)} 
+The \texttt{alphabetizer()} method is intended to take an array of strings as an argument and reorder the list so that it is ordered alphabetically. After executing the program the list \texttt{roster} should be changed to \texttt{\{Luis, Maddox, Rafiki, Saad, Sam, Yosuf\}}:
+
+\begin{lstlisting}
+String[] roster = {Saad, Yosuf, Sam, Rafiki, Luis, Maddox}
+alphabetizer(roster);
+
+\end{lstlisting}
+
+\begin{enumerate}[a.]
+\item \textbf{Make a plan:} Write out your algorithm in pseudocode below:
+
+\makeemptybox{5in}
+
+\newpage
+\item
+Implement your algorithm in Java:
+
+\begin{lstlisting}
+/**
+*This method should reorder an array of strings so that the first item comes first alphabetically and the last item comes last alphabetically.
+* Precondition: arr is an array of Strings.
+* Postcondition: arr is sorted alphabetically.
+*/
+public static void alphabetizer(String[] arr){
+//write your code here!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+\end{lstlisting}
+
+\end{enumerate}
+\end{document}
